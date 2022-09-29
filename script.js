@@ -1,84 +1,57 @@
-// Player vs. Computer
+let computerChoice;
+let randomNumber;
+// const playerSelection = 'rock';
+// const computerSelection = getComputerChoice();
 
-let playerScore = 0;
-let computerScore = 0;
-let round = 0;
-let moves = ["rock", "paper", "scissors"];
-function roshambo(a, b, c) {
-  playerMove1 = prompt("Type rock, paper, or scissors");
-  if (
-    playerMove1.toLowerCase() === "rock" ||
-    playerMove1.toLowerCase() === "paper" ||
-    playerMove1.toLowerCase() === "scissors"
-  ) {
-    console.log(`Player 1 chooses ${playerMove1}`);
-  } else {
-    console.log("Invalid input! Must type rock, paper, or scissors.");
-    return;
-  }
-
-  computerMove2 = moves[Math.floor(Math.random() * moves.length)];
-  console.log(`Computer 2 chooses ${computerMove2}`);
-
-  if (playerMove1.toLowerCase() === "rock" && computerMove2 === "paper") {
-    computerScore++;
-    console.log(`Player 1 lost! ${playerScore}-${computerScore}`);
-  } else if (
-    playerMove1.toLowerCase() === "paper" &&
-    computerMove2 === "scissors"
-  ) {
-    computerScore++;
-    console.log(`Player 1 lost! ${playerScore}-${computerScore}`);
-  } else if (
-    playerMove1.toLowerCase() === "scissors" &&
-    computerMove2 === "rock"
-  ) {
-    computerScore++;
-    console.log(`Player 1 lost! ${playerScore}-${computerScore}`);
-  } else if (playerMove1.toLowerCase() === computerMove2) {
-    console.log(`It's a tie! ${playerScore}-${computerScore}`);
-  } else {
-    playerScore++;
-    console.log(`Computer 2 lost! ${playerScore}-${computerScore}`);
-  }
+function getComputerChoice() {
+    randomNumber = Math.floor((Math.random() * 3) + 1);
+    if (randomNumber === 1) {
+        computerChoice = 'rock';
+    } else if (randomNumber === 2){
+        computerChoice = 'paper';
+    } else {
+        computerChoice = 'scissors';
+    }
+    return computerChoice;
 }
 
-for (let i = 0; i < 5; i++) {
-  console.log(`Round ${i + 1}`);
-  roshambo();
-}
-
-if (playerScore > computerScore) {
-  console.log(`Player wins the game! ${playerScore}-${computerScore}`);
-} else if (computerScore > playerScore) {
-  console.log(`Computer wins the game! ${playerScore}-${computerScore}`);
+function playRound(playerSelection, computerSelection) {
+// Player chooses rock
+if (playerSelection === 'rock' && computerSelection === 'rock') {
+    return `It's a draw!`;
+} else if (playerSelection === 'rock' && computerSelection === 'paper') {
+    return `You lose! Paper beats rock!`
+} else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+    return `You win! Rock beats scissors!`
+// Player chooses paper
+} else if (playerSelection === 'paper' && computerSelection === 'rock') {
+    return `You win! Paper beats rock!`
+} else if (playerSelection === 'paper' && computerSelection === 'paper') {
+    return `It's a draw!`
+} else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+    return `You lose! Scissors beats paper!`
+// Player chooses scissors
+} else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+    return `You lose! Rock beats scissors!`
+} else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+    return `You win! Scissors beats rock!`
+} else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+    return `It's a draw!`
 } else {
-  console.log(`The game ended in a tie. ${playerScore}-${computerScore}`);
+    return `Please enter rock, paper, or scissors, idiot`
+}
+}
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Choose rock, paper, or scissors').toLowerCase();
+        const computerSelection = getComputerChoice();
+        console.log(`Player chooses ${playerSelection}, Computer chooses ${computerSelection}`)
+        console.log(playRound(playerSelection, computerSelection));
+    }
 }
 
-// Computer vs. Computer
+game();
 
-// moves = ["rock", "paper", "scissors"];
-// function computerPlay(a, b, c) {
-//   computerMove1 = moves[Math.floor(Math.random() * moves.length)];
-//   console.log(`Computer 1 chooses ${computerMove1}`);
-
-//   computerMove2 = moves[Math.floor(Math.random() * moves.length)];
-//   console.log(`Computer 2 chooses ${computerMove2}`);
-
-//   if (computerMove1 === "rock" && computerMove2 === "paper") {
-//     console.log("Computer 1 lost");
-//   } else if (computerMove1 === "paper" && computerMove2 === "scissors") {
-//     console.log("Computer 1 lost");
-//   } else if (computerMove1 === "scissors" && computerMove2 === "rock") {
-//     console.log("Computer 1 lost");
-//   } else if (computerMove1 === computerMove2) {
-//     console.log("It's a tie");
-//   } else {
-//     console.log(`Computer 2 lost`);
-//   }
-// }
-
-// computerPlay();
+// test
 
 
